@@ -18,7 +18,8 @@ class Currency extends Model
     var $vlr_utilizado;
     var $vlr;
     var $cotacao;
-    var $msg;    
+    var $msg;
+    var $data_cotacao;    
 
     function __construct($moeda_destino, $pgto_cod, $vlr_in)
     {
@@ -33,12 +34,13 @@ class Currency extends Model
             $this->tx_percent_b = $this->tx_vlr_compra($vlr);
             $meio_pgto = $this->forma_pgto();
             $this->pgto_nome = $meio_pgto[$pgto_cod];
-             /*
-            busca valor da cotação passando a moeda, ex: USD, EUR
+            /*
+                busca valor da cotação passando a moeda, ex: USD, EUR
             */        
             $getCotacao = new Cotacao;
             $getdadosCotacao = $getCotacao->consultarCotacao($_POST['from_currency']);        
             $dados = $getdadosCotacao[$_POST['from_currency'].'BRL'] ?? [];
+            $this->data_cotacao = $dados['create_date'];
             $this->cotacao = $dados['bid'];
         }      
     }

@@ -1,7 +1,8 @@
  
-<div class="col-md-12"> 
-<fieldset>
-<legend>Resultado</legend>    
+<div class="col-md-12 container-cotacao-res">
+<h3>Dados da cotação</h3>     
+<fieldset class="field_box">
+<p>{{ \Carbon\Carbon::parse( $data_cotacao ?? '' )->format('d/m/Y H:i:s')}}</p>  
 <p><b>Moeda de origem:</b> {{ $moeda_origem ?? '' }}</p>
 <p><b>Moeda de Destino:</b> {{ $moeda_destino?? '' }}</p>
 <p><b>Valo para conversão:</b> {{ $vlr_conversao ?? '' }}</p>
